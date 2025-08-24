@@ -2,7 +2,6 @@ import dash
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template
 import sass
-from index import create_layout
 
 # Compilar SCSS
 compiled_css = sass.compile(filename="assets/custom.scss")
@@ -18,8 +17,6 @@ app = dash.Dash(
     external_stylesheets=[dbc.themes.BOOTSTRAP, "/assets/custom.css"]
 )
 
-# Definir o layout da aplicação
-app.layout = create_layout()
-
-if __name__ == "__main__":
-    app.run(debug=True)
+app.config['suppress_callback_exceptions'] = True
+app.scripts.config.serve_locally = True
+server = app.server

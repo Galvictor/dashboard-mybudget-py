@@ -60,7 +60,7 @@ Um dashboard interativo para controle de orçamento pessoal desenvolvido com Pyt
 1. **Ative o ambiente virtual** (se ainda não estiver ativo)
 2. **Execute o aplicativo:**
     ```bash
-    python app.py
+    python index.py
     ```
 3. **Acesse no navegador:**
     ```
@@ -79,18 +79,19 @@ O projeto foi estruturado seguindo boas práticas de separação de responsabili
 -   Configuração de estilos externos
 -   Inicialização do servidor
 
-### **`index.py`** - Layout da Aplicação
+### **`index.py`** - Layout Principal + Roteamento
 
--   Definição do layout principal
--   Criação de gráficos e tabelas
--   Estrutura da interface
--   Dados de exemplo
+-   Layout principal com sidebar + conteúdo
+-   Sistema de roteamento com `dcc.Location`
+-   Callbacks para mudança de páginas
+-   **Arquivo principal de execução** (`python index.py`)
 
-### **`components/`** - Componentes Reutilizáveis
+### **`components/`** - Componentes Modulares
 
--   **`sidebar.py`**: Componente da barra lateral
--   **`__init__.py`**: Configuração do módulo
--   Estrutura preparada para futuros componentes
+-   **`sidebar.py`**: Barra lateral de navegação
+-   **`dashboard.py`**: Conteúdo principal do dashboard
+-   Componentes independentes com atributo `.layout`
+-   Estrutura preparada para futuras páginas
 
 ## 📁 Estrutura do Projeto
 
@@ -98,9 +99,9 @@ O projeto foi estruturado seguindo boas práticas de separação de responsabili
 dash-mybudget-py/
 ├── app.py              # Configuração do servidor Dash
 ├── index.py            # Layout principal da aplicação
-├── components/         # Componentes reutilizáveis
-│   ├── __init__.py     # Módulo Python
-│   └── sidebar.py      # Componente da sidebar
+├── components/         # Componentes modulares
+│   ├── sidebar.py      # Barra lateral de navegação
+│   └── dashboard.py    # Conteúdo principal
 ├── assets/
 │   ├── custom.scss     # Estilos SCSS customizados
 │   └── custom.css      # CSS compilado (gerado automaticamente)
@@ -118,7 +119,7 @@ dash-mybudget-py/
 
 ### Alterando Dados
 
--   Modifique o DataFrame no arquivo `index.py` na função `create_layout()`
+-   Modifique o DataFrame no arquivo `components/dashboard.py`
 -   Conecte a uma fonte de dados externa (banco de dados, API, etc.)
 
 ### Mudando o Tema
@@ -151,13 +152,13 @@ O aplicativo roda em modo debug por padrão, permitindo:
 
 1. **Para componentes simples**: Adicione-os ao layout em `index.py`
 2. **Para componentes reutilizáveis**: Crie na pasta `components/`
-3. **Para interatividade**: Implemente callbacks no arquivo apropriado
+3. **Para interatividade**: Implemente callbacks no `index.py`
 
 ### Estrutura de Arquivos
 
 -   **`app.py`**: Mantenha apenas configurações do servidor
--   **`index.py`**: Adicione novos elementos de interface
--   **`components/`**: Crie componentes modulares e reutilizáveis
+-   **`index.py`**: Layout principal + roteamento + callbacks
+-   **`components/`**: Crie componentes modulares com atributo `.layout`
 
 ## 🐛 Solução de Problemas
 
