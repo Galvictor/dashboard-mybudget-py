@@ -1,0 +1,18 @@
+# Dashboard MyBudget - Dependências
+# Framework principal
+dash>=2.14.0
+
+# Componentes Bootstrap para Dash
+dash-bootstrap-components>=1.5.0
+
+# Temas e templates para Dash
+dash-bootstrap-templates>=1.4.1
+
+# Gráficos interativos
+plotly>=5.17.0
+
+# Manipulação de dados
+pandas>=2.0.0
+
+# Compilação de SCSS
+libsass>=0.22.0

@@ -1,0 +1,26 @@
+// custom.scss
+
+// Importa funções, variáveis e mixins do Bootstrap
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+// 🔹 Suas customizações
+$custom-colors: (
+    'custom-color': #900,
+);
+
+// Sobrescreve o mapa de cores
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// Importa tudo do Bootstrap já com suas configs
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+// 🔹 SCSS adicional só seu
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.titulo {
+    color: map-get($theme-colors, 'custom-color');
+}
