@@ -5,6 +5,7 @@ from dash_bootstrap_templates import load_figure_template
 import plotly.express as px
 import pandas as pd
 import sass
+from components.sidebar import create_sidebar
 
 # Compilar SCSS
 compiled_css = sass.compile(filename="assets/custom.scss")
@@ -30,21 +31,27 @@ fig = px.bar(df, x="Categoria", y="Valor", title="Exemplo de Gráfico")
 
 # Layout
 app.layout = dbc.Container([
+    # Conteúdo principal com sidebar
     dbc.Row([
-        dbc.Col(html.H1("Hello World Dashboard", className="titulo"))
-    ]),
-    dbc.Row([
-        dbc.Col(dcc.Graph(figure=fig))
-    ]),
-    dbc.Row([
-        dbc.Col(
-            html.Div([
-                html.H4("Tabela de Exemplo"),
-                dbc.Table.from_dataframe(df, striped=True, bordered=True, hover=True)
+        # Sidebar (lado esquerdo)
+        dbc.Col(create_sidebar(), width=3, className="pe-0"),
+        
+        # Conteúdo principal (lado direito)
+        dbc.Col([
+            dbc.Row([
+                dbc.Col(dcc.Graph(figure=fig))
+            ], className="mb-4"),
+            dbc.Row([
+                dbc.Col(
+                    html.Div([
+                        html.H4("Tabela de Exemplo"),
+                        dbc.Table.from_dataframe(df, striped=True, bordered=True, hover=True)
+                    ])
+                )
             ])
-        )
+        ], width=9)
     ])
-])
+], fluid=True)
 
 if __name__ == "__main__":
     app.run(debug=True)
